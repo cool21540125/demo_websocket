@@ -1,0 +1,16 @@
+<div id="output"></div>
+
+<script>
+    console.log(11);
+    var socket = new WebSocket('ws://127.0.0.1:5000');
+    console.log(22);
+    socket.onmessage = function(event) {
+        console.log(33);
+        var msg = JSON.parse(event.data);
+        msg.counter = parseInt(msg.counter)++;
+        msg.string += msg.counter + '-';
+        var html = '<p>' + msg.string + '</p>';
+        document.getElementById('output').innerHTML=html;
+        socket.send(JSON.stringify(msg));
+    }
+</script>
