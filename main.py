@@ -2,8 +2,7 @@
 # 2019/09/08
 
 from flask import Flask, render_template
-from flask_socketio import SocketIO
-from flask_socketio import send, emit
+from flask_socketio import SocketIO, send, emit
 from config import DevelopmentConfig
 
 app = Flask(__name__)
@@ -21,7 +20,7 @@ def handle_message(msg):
 
 @socketio.on('connect')
 def handle_connect():
-    emit('push', {'data': 'OK'})
+    emit('response', 'Welcome Tony!')
 
 
 @app.route('/')
